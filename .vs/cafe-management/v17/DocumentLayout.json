@@ -3,8 +3,20 @@
   "WorkspaceRootPath": "D:\\Document\\cafe-management\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Document\\cafe-management\\cafe-management\\Migrations\\20251107142638_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:cafe-management\\Migrations\\20251107142638_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\migrations\\20251107142638_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\migrations\\20251107142638_v1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\models\\tbcategory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,14 +39,6 @@
       "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\models\\cafedbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\models\\tbcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\models\\tbcustomer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -53,10 +57,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\cafe-management.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\cafe-management.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|d:\\document\\cafe-management\\cafe-management\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{8AD32D7A-572B-4A22-96DB-76A3250A6F4C}|cafe-management\\cafe-management.csproj|solutionrelative:cafe-management\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -66,7 +66,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -82,33 +82,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "20251107142638_v1.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Migrations\\20251107142638_v1.cs",
               "RelativeDocumentMoniker": "cafe-management\\Migrations\\20251107142638_v1.cs",
               "ToolTip": "D:\\Document\\cafe-management\\cafe-management\\Migrations\\20251107142638_v1.cs",
               "RelativeToolTip": "cafe-management\\Migrations\\20251107142638_v1.cs",
-              "ViewState": "AgIAAAgAAAAAAAAAAAAxwB0AAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB0AAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-11-07T14:26:39.091Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\appsettings.json",
               "RelativeDocumentMoniker": "cafe-management\\appsettings.json",
               "ToolTip": "D:\\Document\\cafe-management\\cafe-management\\appsettings.json",
               "RelativeToolTip": "cafe-management\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAATAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2025-11-07T14:13:12.205Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Program.cs",
               "RelativeDocumentMoniker": "cafe-management\\Program.cs",
@@ -121,20 +121,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "cafe-management",
+              "DocumentIndex": 13,
+              "Title": "cafe-management.csproj",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\cafe-management.csproj",
               "RelativeDocumentMoniker": "cafe-management\\cafe-management.csproj",
               "ToolTip": "D:\\Document\\cafe-management\\cafe-management\\cafe-management.csproj",
               "RelativeToolTip": "cafe-management\\cafe-management.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-11-07T13:44:17.769Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:44:17.769Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "CafeDBContext.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\CafeDBContext.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\CafeDBContext.cs",
@@ -142,12 +141,11 @@
               "RelativeToolTip": "cafe-management\\Models\\CafeDBContext.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACMAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:15:28.023Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:15:28.023Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 2,
               "Title": "ScaffoldingReadMe.txt",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\ScaffoldingReadMe.txt",
               "RelativeDocumentMoniker": "cafe-management\\ScaffoldingReadMe.txt",
@@ -160,7 +158,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 7,
               "Title": "TbAccount.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbAccount.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbAccount.cs",
@@ -168,12 +166,11 @@
               "RelativeToolTip": "cafe-management\\Models\\TbAccount.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:10:34.045Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:10:34.045Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "TbCategory.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbCategory.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbCategory.cs",
@@ -181,12 +178,11 @@
               "RelativeToolTip": "cafe-management\\Models\\TbCategory.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:09:52.644Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:09:52.644Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "TbCustomer.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbCustomer.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbCustomer.cs",
@@ -194,12 +190,11 @@
               "RelativeToolTip": "cafe-management\\Models\\TbCustomer.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:09:18.992Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:09:18.992Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "TbBillDetail.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbBillDetail.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbBillDetail.cs",
@@ -207,12 +202,11 @@
               "RelativeToolTip": "cafe-management\\Models\\TbBillDetail.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAQwAgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:08:07.73Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:08:07.73Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "TbFeedback.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbFeedback.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbFeedback.cs",
@@ -220,12 +214,11 @@
               "RelativeToolTip": "cafe-management\\Models\\TbFeedback.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA/AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:07:16.012Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:07:16.012Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "TbNews.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbNews.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbNews.cs",
@@ -233,12 +226,11 @@
               "RelativeToolTip": "cafe-management\\Models\\TbNews.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:06:31.493Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:06:31.493Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "TbProduct.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbProduct.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbProduct.cs",
@@ -246,12 +238,11 @@
               "RelativeToolTip": "cafe-management\\Models\\TbProduct.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:05:51.193Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:05:51.193Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 6,
               "Title": "TbBill.cs",
               "DocumentMoniker": "D:\\Document\\cafe-management\\cafe-management\\Models\\TbBill.cs",
               "RelativeDocumentMoniker": "cafe-management\\Models\\TbBill.cs",
@@ -259,8 +250,7 @@
               "RelativeToolTip": "cafe-management\\Models\\TbBill.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAAowBsAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-11-07T13:04:40.725Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-07T13:04:40.725Z"
             }
           ]
         },
