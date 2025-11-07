@@ -1,7 +1,14 @@
+using cafe_management.Models;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connection = builder.Configuration.GetConnectionString("CafeConnection");
+builder.Services.AddDbContext<CafeDBContext>(options => options.UseSqlServer(connection));
+
 
 var app = builder.Build();
 
