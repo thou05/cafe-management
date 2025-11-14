@@ -1,26 +1,30 @@
-using System.Diagnostics;
 using cafe_management.Models;
+using cafe_management.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-
-namespace cafe_management.Controllers
+using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
+namespace Web_CuaHangCafe.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly CafeDBContext _context;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, CafeDBContext context)
         {
             _logger = logger;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
-        }
+            HomeViewModel value = new HomeViewModel();
+            var lstProducts = _context.TbProducts.AsNoTracking().OrderBy(x => x.Id).Take(8).ToList();
+            var lstNews = _context.TbNews.AsNoTracking().OrderByDescending(x => x.PostedDate).Take(3).ToList();
+            value.lstSanPham = lstProducts;
+            value.lstTinTuc = lstNews;
 
-        public IActionResult Privacy()
-        {
-            return View();
+            return View(value);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
