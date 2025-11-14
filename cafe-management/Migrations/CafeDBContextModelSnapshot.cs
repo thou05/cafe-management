@@ -226,12 +226,9 @@ namespace cafe_management.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("decimal(18, 2)");
 
-                    b.Property<int>("ProductCategoryId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("ProductCategoryId");
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("TbProducts");
                 });
@@ -239,7 +236,7 @@ namespace cafe_management.Migrations
             modelBuilder.Entity("cafe_management.Models.TbBill", b =>
                 {
                     b.HasOne("cafe_management.Models.TbCustomer", "Customer")
-                        .WithMany("SalesOrders")
+                        .WithMany("Bills")
                         .HasForeignKey("CustomerId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -250,7 +247,7 @@ namespace cafe_management.Migrations
             modelBuilder.Entity("cafe_management.Models.TbBillDetail", b =>
                 {
                     b.HasOne("cafe_management.Models.TbBill", "Bill")
-                        .WithMany("SalesOrderDetails")
+                        .WithMany("BillDetails")
                         .HasForeignKey("BillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -268,18 +265,18 @@ namespace cafe_management.Migrations
 
             modelBuilder.Entity("cafe_management.Models.TbProduct", b =>
                 {
-                    b.HasOne("cafe_management.Models.TbCategory", "CategoryIdNavigation")
+                    b.HasOne("cafe_management.Models.TbCategory", "Category")
                         .WithMany("Products")
-                        .HasForeignKey("ProductCategoryId")
+                        .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("CategoryIdNavigation");
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("cafe_management.Models.TbBill", b =>
                 {
-                    b.Navigation("SalesOrderDetails");
+                    b.Navigation("BillDetails");
                 });
 
             modelBuilder.Entity("cafe_management.Models.TbCategory", b =>
@@ -289,7 +286,7 @@ namespace cafe_management.Migrations
 
             modelBuilder.Entity("cafe_management.Models.TbCustomer", b =>
                 {
-                    b.Navigation("SalesOrders");
+                    b.Navigation("Bills");
                 });
 
             modelBuilder.Entity("cafe_management.Models.TbProduct", b =>

@@ -32,8 +32,8 @@ namespace cafe_management.Models
         [Required]
         public int CategoryId { get; set; }
 
-        [ForeignKey("ProductCategoryId")]
-        public virtual TbCategory CategoryIdNavigation { get; set; } = null!; 
+        
+        public virtual TbCategory Category { get; set; } = null!; 
 
         
         public virtual ICollection<TbBillDetail> BillDetails { get; set; } = new List<TbBillDetail>();

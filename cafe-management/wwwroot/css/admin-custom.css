@@ -1,0 +1,313 @@
+﻿/* --- Admin Custom Styles --- */
+
+/* Base Body Styles */
+body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+    background-color: #f0f2f5; /* Màu nền nhẹ nhàng cho toàn trang */
+    color: #343a40; /* Màu chữ mặc định */
+}
+
+/* Page Header Styles */
+.page-header {
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #e9ecef; /* Đường kẻ dưới tiêu đề */
+}
+
+.page-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #343a40;
+    margin-bottom: 0; /* Đảm bảo không có margin dưới title */
+}
+
+/* Card Styles (áp dụng cho tất cả các card) */
+.card {
+    border: none; /* Bỏ viền mặc định của card */
+    border-radius: 12px; /* Bo góc nhiều hơn */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Đổ bóng mạnh hơn */
+    margin-bottom: 25px; /* Khoảng cách giữa các card */
+}
+
+.card-header {
+    background-color: #ffffff; /* Nền trắng cho header */
+    border-bottom: 1px solid #e9ecef; /* Đường kẻ phân cách */
+    padding: 1.25rem 1.5rem; /* Đệm rộng hơn */
+    border-top-left-radius: 12px; /* Bo góc trên khớp với card */
+    border-top-right-radius: 12px;
+}
+
+.card-footer {
+    background-color: #ffffff;
+    border-top: 1px solid #e9ecef;
+    padding: 1.25rem 1.5rem;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+}
+
+/* Table Styles (cho trang Index) */
+.table {
+    margin-bottom: 0; /* Bỏ margin dưới bảng để khớp với card-body */
+}
+
+.table thead th {
+    background-color: #e9ecef; /* Nền xám cho header bảng */
+    color: #495057; /* Màu chữ đậm hơn */
+    font-weight: 600;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #dee2e6; /* Đường kẻ dưới mạnh hơn */
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none; /* Bỏ đường kẻ cuối cùng của bảng */
+}
+
+.table tbody td {
+    padding: 0.75rem 1rem;
+    font-size: 0.95rem;
+}
+
+/* Image Styles */
+.product-image, #imgPreview {
+    border-radius: 8px; /* Bo góc ảnh đồng bộ */
+    border: 1px solid #dee2e6; /* Viền nhẹ */
+    object-fit: cover; /* Đảm bảo ảnh không bị biến dạng */
+    background-color: #ffffff; /* Nền trắng cho ảnh */
+}
+
+.product-image { /* Cho danh sách */
+    width: 70px; /* Nhỏ hơn một chút để cân đối */
+    height: 70px;
+}
+
+/* Đã XÓA style .product-detail-image cũ bị trùng */
+
+#imgPreview { /* Cho trang thêm/sửa */
+    max-width: 100%;
+    height: auto;
+    padding: 5px;
+}
+
+/* Form Group Styles (cho trang Create/Edit) */
+.form-label {
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 0.5rem;
+}
+
+.form-control, .form-select {
+    border-radius: 8px; /* Bo góc cho input/select */
+    padding: 0.75rem 1rem; /* Đệm rộng hơn */
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Button Styles */
+.btn {
+    border-radius: 8px; /* Bo góc cho tất cả các nút */
+    padding: 0.6rem 1.2rem; /* Đệm nút rộng hơn */
+    font-weight: 500;
+    transition: all 0.2s ease-in-out; /* Hiệu ứng hover */
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #004085;
+    transform: translateY(-1px); /* Nâng nhẹ nút khi hover */
+}
+
+.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    transform: translateY(-1px);
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    border-color: #117a8b;
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    border-color: #545b62;
+    transform: translateY(-1px);
+}
+
+
+/* Search Field (cho trang Index) - ĐÃ SỬA LỖI RESPONSIVE */
+.search-field {
+    width: 100%; /* Mặc định 100% cho mobile */
+}
+
+.search-field .input-group {
+    width: 100%; /* Luôn fill 100% .search-field */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Bóng nhẹ cho thanh search */
+    border-radius: 8px;
+    overflow: hidden; /* Đảm bảo bo góc cho input-group */
+}
+
+.search-field .form-control {
+    border-right: none;
+    border-color: #ced4da;
+}
+
+.search-field .btn {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.search-field .btn:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+}
+
+/* Pagination (cho trang Index) */
+.pagination .page-item .page-link {
+    border-radius: 8px; /* Bo góc cho các nút phân trang */
+    margin: 0 4px; /* Khoảng cách giữa các nút */
+    color: #007bff;
+    border: 1px solid #dee2e6;
+    transition: all 0.2s ease-in-out;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: white;
+    box-shadow: 0 2px 5px rgba(0, 123, 255, 0.2);
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #e9ecef;
+    border-color: #dee2e6;
+}
+
+/* Validation Summary */
+.text-danger {
+    font-size: 0.875em;
+    margin-top: 0.25rem;
+}
+
+/* Alert Messages */
+.alert {
+    border-radius: 8px;
+    padding: 1rem 1.5rem;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.alert .btn-close {
+    font-size: 0.8rem;
+}
+
+/* Responsive adjustments - ĐÃ SỬA LỖI */
+.card-header-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Tự động rớt hàng trên mobile */
+    gap: 1rem; /* Khoảng cách khi rớt hàng */
+}
+
+/* Chỉ định chiều rộng cho search-field trên desktop */
+@media (min-width: 768px) {
+    .search-field {
+        width: 320px; /* Chiều rộng cố định trên desktop */
+    }
+}
+
+
+/* CSS cho bố cục chi tiết sản phẩm mới */
+.product-detail-layout .product-image-main {
+    width: 100%;
+    max-width: 400px; /* Giới hạn chiều rộng ảnh */
+    height: auto;
+    border-radius: 12px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Bóng mờ nhẹ */
+}
+
+/* Làm cho giá nổi bật */
+.product-price-display {
+    font-size: 2rem; /* To hơn */
+    font-weight: 700;
+    color: #dc3545; /* Màu đỏ nổi bật */
+}
+
+/* Tùy chỉnh list-group cho chi tiết */
+.list-group-item-details {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-color: #f0f2f5; /* Màu viền nhạt hơn */
+}
+
+.list-group-item-details .detail-label {
+    display: flex;
+    align-items: center;
+    color: #6c757d; /* Màu text xám */
+    font-weight: 500;
+}
+
+.list-group-item-details .detail-label i {
+    font-size: 1rem;
+    width: 28px; /* Đảm bảo icon thẳng hàng */
+    margin-right: 8px;
+    text-align: center;
+}
+
+.list-group-item-details .detail-value {
+    font-weight: 600;
+    text-align: right;
+}
+
+/* CSS cho mô tả */
+.product-description-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #495057;
+    margin-bottom: 1.5rem; /* Khoảng cách với danh sách bên dưới */
+}
