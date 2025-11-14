@@ -492,3 +492,6 @@ D:\Document\cafe-management\cafe-management\obj\Debug\net8.0\staticwebassets.upT
 D:\Document\cafe-management\cafe-management\obj\Debug\net8.0\cafe-man.9B40EC43.Up2Date
 D:\Document\cafe-management\cafe-management\obj\Debug\net8.0\cafe-management.genruntimeconfig.cache
 D:\Document\cafe-management\cafe-management\obj\Debug\net8.0\ref\cafe-management.dll
+D:\Document\cafe-management\cafe-management\bin\Debug\net8.0\X.PagedList.dll
+D:\Document\cafe-management\cafe-management\bin\Debug\net8.0\X.PagedList.Mvc.Core.dll
+D:\Document\cafe-management\cafe-management\obj\Debug\net8.0\cafe-management.MvcApplicationPartsAssemblyInfo.cs

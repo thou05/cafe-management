@@ -32,7 +32,7 @@ namespace cafe_management.Models
         [ForeignKey("CustomerId")]
         public virtual TbCustomer Customer { get; set; } = null!; 
         
-        public virtual ICollection<TbBillDetail> SalesOrderDetails { get; set; } = new List<TbBillDetail>();
+        public virtual ICollection<TbBillDetail> BillDetails { get; set; } = new List<TbBillDetail>();
 
         // Constructor: Tự động gán Guid và Ngày đặt hàng
         public TbBill()

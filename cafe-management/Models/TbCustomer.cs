@@ -23,7 +23,7 @@ namespace cafe_management.Models
         public string Address { get; set; } = null!;
 
 
-        public virtual ICollection<TbBill> SalesOrders { get; set; } = new List<TbBill>();
+        public virtual ICollection<TbBill> Bills { get; set; } = new List<TbBill>();
 
         // Constructor: Tự động tạo Guid khi tạo mới    
         public TbCustomer()

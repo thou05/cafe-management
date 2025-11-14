@@ -1,0 +1,98 @@
+﻿@model cafe_management.ViewModels.ProductViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = ViewBag.name;
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    .product-detail-image {
+        max-width: 300px; /* Giới hạn chiều rộng tối đa của ảnh */
+        height: auto;
+        border-radius: 8px; /* Bo góc */
+        border: 1px solid #dee2e6; /* Viền xám nhạt */
+        padding: 5px; /* Đệm */
+        background-color: #f8f9fa; /* Nền xám nhạt */
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                <h3 class="page-title mb-0">Chi tiết sản phẩm: <span style="color:#666;">@Model.Name</span></h3>
+            </div>
+            <div class="card-body product-detail-layout">
+                <div class="row">
+
+                    <div class="col-lg-5 text-center mb-4 mb-lg-0">
+                        <img class="product-image-main" src="@Url.Content("~/img/products/" + Model.ImageUrl)" alt="@Model.Name" />
+                    </div>
+
+                    <div class="col-lg-7">
+
+                        <h2 class="h3 fw-light mb-2">@Model.Name</h2>
+
+                        <div class="product-price-display mb-3">
+                            @Model.Price.ToString("n0") &#8363;
+                        </div>
+
+                        @if (!string.IsNullOrEmpty(Model.Description))
+                        {
+                            <p class="product-description-text">
+                                @Html.DisplayFor(model => model.Description)
+                            </p>
+                        }
+
+                        <ul class="list-group list-group-flush">
+
+                            <li class="list-group-item list-group-item-details">
+                                <span class="detail-label">
+                                    <i class="fa fa-tag"></i> Loại sản phẩm
+                                </span>
+                                <span class="badge bg-secondary rounded-pill fs-6">
+                                    @Html.DisplayFor(model => model.Category)
+                                </span>
+                            </li>
+
+                            <li class="list-group-item list-group-item-details">
+                                <span class="detail-label">
+                                    <i class="fa fa-barcode"></i> Mã sản phẩm
+                                </span>
+                                <code class="detail-value fs-6">@Html.DisplayFor(model => model.Id)</code>
+                            </li>
+
+                            @if (!string.IsNullOrEmpty(Model.Notes))
+                            {
+                                <li class="list-group-item list-group-item-details">
+                                    <span class="detail-label">
+                                        <i class="fa fa-sticky-note"></i> Ghi chú
+                                    </span>
+                                    <span class="detail-value">
+                                        @Html.DisplayFor(model => model.Notes)
+                                    </span>
+                                </li>
+                            }
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+          
+
+            <div class="card-footer d-flex gap-2">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success">
+                    <i class="fa fa-pencil"></i> Sửa
+                </a>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i> Quay về
+                </a>
+            </div>
+
+        </div>
+    </div>
+</div>
+
