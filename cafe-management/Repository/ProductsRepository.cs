@@ -17,13 +17,13 @@ namespace cafe_management.Repository
         {
             var products = _context.TbProducts.Select(p => new ProductViewModel
             {
-                MaSanPham = p.Id,
-                TenSanPham = p.Name,
-                GiaBan = p.Price,
-                MoTa = p.Description,
-                HinhAnh = p.ImageUrl,
-                GhiChu = p.Notes,
-                LoaiSanPham = p.Id.ToString(),
+                Id = p.Id,
+                Name = p.Name,
+                Price = p.Price,
+                Description = p.Description,
+                ImageUrl = p.ImageUrl,
+                Notes = p.Notes,
+                Category = p.Id.ToString(),
             });
 
             return products.ToList();

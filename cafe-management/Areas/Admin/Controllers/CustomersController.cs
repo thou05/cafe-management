@@ -7,19 +7,19 @@ using X.PagedList;
 namespace cafe_management.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("Admin/Clients")]
-    public class ClientsController : Controller
+    [Route("Admin/Customers")]
+    public class CustomersController : Controller
     {
         private readonly CafeDBContext _context;
 
-        public ClientsController(CafeDBContext context)
+        public CustomersController(CafeDBContext context)
         {
             _context = context;
         }
 
         [Route("")]
         [Route("Index")]
-        [Authentication]
+        //[Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 30;
@@ -31,7 +31,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Search")]
-        [Authentication]
+        //[Authentication]
         [HttpGet]
         public IActionResult Search(int? page, string search)
         {
@@ -48,7 +48,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Create")]
-        [Authentication]
+        //[Authentication]
         [HttpGet]
         public IActionResult Create()
         {
@@ -56,7 +56,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Create")]
-        [Authentication]
+        //[Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(TbCustomer khachHang)
@@ -66,11 +66,11 @@ namespace cafe_management.Areas.Admin.Controllers
 
             TempData["Message"] = "Thêm thành công";
 
-            return RedirectToAction("Index", "Clients");
+            return RedirectToAction("Index", "Customers");
         }
 
         [Route("Edit")]
-        [Authentication]
+        //[Authentication]
         [HttpGet]
         public IActionResult Edit(int id, string name)
         {
@@ -81,7 +81,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Edit")]
-        [Authentication]
+        //[Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(TbCustomer khachHang)
@@ -91,11 +91,11 @@ namespace cafe_management.Areas.Admin.Controllers
 
             TempData["Message"] = "Sửa thành công";
 
-            return RedirectToAction("Index", "Clients");
+            return RedirectToAction("Index", "Customers");
         }
 
         [Route("Delete")]
-        [Authentication]
+        //[Authentication]
         [HttpGet]
         public IActionResult Delete(string id)
         {
@@ -106,7 +106,7 @@ namespace cafe_management.Areas.Admin.Controllers
             if (hoaDon.Count() > 0)
             {
                 TempData["Message"] = "Xoá không thành công";
-                return RedirectToAction("Index", "Clients");
+                return RedirectToAction("Index", "Customers");
             }
 
             _context.Remove(_context.TbCustomers.Find(id));
@@ -114,7 +114,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
             TempData["Message"] = "Xoá thành công";
 
-            return RedirectToAction("Index", "Clients");
+            return RedirectToAction("Index", "Customers");
         }
     }
 }

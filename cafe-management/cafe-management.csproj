@@ -29,7 +29,6 @@
     <Folder Include="Repository\" />
     <Folder Include="ViewComponents\" />
     <Folder Include="Views\Shared\Components\" />
-    <Folder Include="wwwroot\img\news\" />
     <Folder Include="wwwroot\img\products\" />
   </ItemGroup>
 

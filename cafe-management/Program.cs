@@ -1,10 +1,12 @@
 using cafe_management.Models;
+using cafe_management.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddScoped<INhomSpRepository, NhomSpRepository>();
 
 var connection = builder.Configuration.GetConnectionString("CafeConnection");
 builder.Services.AddDbContext<CafeDBContext>(options => options.UseSqlServer(connection));
