@@ -1,5 +1,7 @@
 wwwroot\css\admin-custom.css
+wwwroot\css\magnific-popup.css
 wwwroot\css\site.css
+wwwroot\css\style-additional.css
 wwwroot\css\style-admin-additional.css
 wwwroot\css\style-admin.css
 wwwroot\css\style-font.css
