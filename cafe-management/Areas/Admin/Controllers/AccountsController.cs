@@ -61,18 +61,6 @@ namespace cafe_management.Areas.Admin.Controllers
             return View();
         }
 
-        //[Route("Create")]
-        ////[Authentication]
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult Create(TbAccount quanTriVien)
-        //{
-        //    _context.TbAccounts.Add(quanTriVien);
-        //    _context.SaveChanges();
-        //    TempData["Message"] = "Thêm thành công";
-
-        //    return RedirectToAction("Index", "Accounts");
-        //}
 
         [Route("Create")]
         [HttpPost]
@@ -98,27 +86,9 @@ namespace cafe_management.Areas.Admin.Controllers
 
             // Nếu form lỗi thì trả về View để nhập lại
             return View(account);
-            //// Hash mật khẩu trước khi lưu vào DB
-            //string hashPass = AccountsController.HashPassword(quanTriVien.Password);
-            //quanTriVien.Password = hashPass;
-
-            //_context.TbAccounts.Add(quanTriVien);
-            //_context.SaveChanges();
-
-            //TempData["Message"] = "Thêm thành công";
-            //return RedirectToAction("Index", "Accounts");
+          
         }
 
-        //[Route("Edit")]
-        //[Authentication]
-        //[HttpGet]
-        //public IActionResult Edit(int id, string name)
-        //{
-        //    var quanTriVien = _context.TbAccounts.Find(id);
-        //    ViewBag.id = id;
-
-        //    return View(quanTriVien);
-        //}
 
         [Route("Edit")]
         [Authentication]
@@ -132,11 +102,6 @@ namespace cafe_management.Areas.Admin.Controllers
             if (account == null) return NotFound();
             return View(account);
 
-            //var quanTriVien = _context.TbAccounts.Find(id);
-            //if (quanTriVien == null) return NotFound();
-
-            //ViewBag.id = id;
-            //return View(quanTriVien);
         }
 
         [Route("Edit")]
@@ -168,16 +133,6 @@ namespace cafe_management.Areas.Admin.Controllers
 
             return View(account);
 
-            //string hashPass = HashPassword(quanTriVien.Password);
-
-            //quanTriVien.Password = hashPass;
-
-            //_context.Entry(quanTriVien).State = EntityState.Modified;
-            //_context.SaveChanges();
-
-            //TempData["Message"] = "Sửa thành công";
-
-            //return RedirectToAction("Index", "Accounts");
         }
 
 
@@ -203,19 +158,6 @@ namespace cafe_management.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-        //[Route("Delete")]
-        //[Authentication]
-        //[HttpGet]
-        //public IActionResult Delete(string id)
-        //{
-        //    TempData["Message"] = "";
-
-        //    _context.Remove(_context.TbAccounts.Find(id));
-        //    _context.SaveChanges();
-
-        //    TempData["Message"] = "Xoá thành công";
-
-        //    return RedirectToAction("Index", "Accounts");
-        //}
+       
     }
 }

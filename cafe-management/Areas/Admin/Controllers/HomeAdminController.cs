@@ -78,35 +78,6 @@ namespace cafe_management.Areas.Admin.Controllers
             return View();
         }
 
-        
-        //public IActionResult Create(TbProduct product, IFormFile imageFile)
-        //{
-           
-        //    if (imageFile != null && imageFile.Length > 0)
-        //    {
-        //        // Đối với mục đích minh họa, chúng ta sẽ lưu ảnh vào thư mục Images trong wwwroot
-        //        string uploadFolder = Path.Combine(Path.Combine(hostEnvironment.WebRootPath, "img"), "products");
-        //        string uniqueFileName = Guid.NewGuid().ToString() + "_" + imageFile.FileName;
-        //        string filePath = Path.Combine(uploadFolder, uniqueFileName);
-
-        //        using (var stream = new FileStream(filePath, FileMode.Create))
-        //        {
-        //            imageFile.CopyTo(stream);
-        //        }
-
-        //        // Lưu đường dẫn hoặc thông tin về ảnh vào cơ sở dữ liệu nếu cần
-        //        // Ví dụ: lưu đường dẫn filePath vào cơ sở dữ liệu
-        //        // ...
-
-        //        return RedirectToAction("Index");
-        //    }
-
-        //    //db.TbSanPhams.Add(product);
-        //    _context.SaveChanges();
-        //    TempData["Message"] = "Add successfully";
-
-        //    return RedirectToAction("Index", "HomeAdmin");
-        //}
 
         [Route("Create")]
         [Authentication]

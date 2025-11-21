@@ -218,34 +218,7 @@ namespace cafe_management.Areas.Admin.Controllers
             _context = context;
         }
 
-        // --- 1. INDEX & SEARCH GỘP LÀM 1 ---
-        //[Route("")]
-        //[Route("index")]
-        //[Authentication]
-        //public IActionResult Index(string search, int? page)
-        //{
-        //    int pageSize = 20; // Số lượng khách hàng mỗi trang
-        //    int pageNumber = page == null || page < 0 ? 1 : page.Value;
-
-        //    // Giữ lại từ khóa tìm kiếm
-        //    ViewBag.SearchTerm = search;
-
-        //    // Tạo query
-        //    var query = _context.TbCustomers.AsNoTracking().AsQueryable();
-
-        //    // Lọc dữ liệu nếu có tìm kiếm (theo Tên hoặc SĐT)
-        //    if (!String.IsNullOrEmpty(search))
-        //    {
-        //        string lowerSearch = search.ToLower();
-        //        query = query.Where(x => x.Name.ToLower().Contains(lowerSearch) ||
-        //                                 x.PhoneNumber.Contains(lowerSearch));
-        //    }
-
-        //    // Sắp xếp theo tên
-        //    var pagedList = query.OrderBy(x => x.Name).ToPagedList(pageNumber, pageSize);
-
-        //    return View(pagedList);
-        //}
+       
         [Route("")]
         [Route("index")]
         [Authentication]
