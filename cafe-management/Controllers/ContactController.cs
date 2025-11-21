@@ -19,8 +19,6 @@ namespace cafe_management.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        // Model changed from TbPhanHoi -> TbFeedback
-        // Variable changed from phanHoi -> feedback
         public IActionResult Index(TbFeedback feedback)
         {
             if (ModelState.IsValid)
@@ -42,7 +40,6 @@ namespace cafe_management.Controllers
                 }
             }
 
-            // Return the object in case of validation failure
             return View(feedback);
         }
     }

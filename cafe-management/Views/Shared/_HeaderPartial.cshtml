@@ -50,56 +50,6 @@
                 </nav>
             </div>
 
-            @* <div class="col-lg-3">
-                <div class="header__right">
-                    <ul class="header__right__widget">
-                        <li>
-                            <span class="search-switch" title="Tìm kiếm"><i class="fas fa-search"></i></span>
-                        </li>
-                        <li>
-                            @await Component.InvokeAsync("ShoppingCartSummary")
-                        </li>
-                    </ul>
-                </div>
-            </div>  *@
-
-            @* <div class="col-lg-3">
-                <div class="header__right">
-                    <ul class="header__right__widget">
-
-                        <li>
-                            <form asp-controller="Products" asp-action="Index" method="get" class="header-search-form">
-                                <input type="text" name="search" placeholder="Tìm sản phẩm..." autocomplete="off" value="@ViewBag.search">
-                                <button type="submit"><i class="fas fa-search"></i></button>
-                            </form>
-                        </li>
-
-                        <li>
-                            @await Component.InvokeAsync("ShoppingCartSummary")
-                        </li>
-                    </ul>
-                </div>
-            </div> *@
-
-            @* <div class="col-lg-3">
-                <div class="header__right">
-                    <ul class="header__right__widget">
-                        <li>
-                            <form class="header-search-form" onsubmit="return false;">
-                                <input type="text" id="searchInput" placeholder="Tìm sản phẩm..." autocomplete="off">
-
-                                <button type="button" onclick="performSearch()">
-                                    <i class="fas fa-search"></i>
-                                </button>
-                            </form>
-                        </li>
-                        <li>
-                            @await Component.InvokeAsync("ShoppingCartSummary")
-                        </li>
-                    </ul>
-                </div>
-            </div> *@
-
             <div class="col-lg-3">
                 <div class="header__right">
                     <ul class="header__right__widget">

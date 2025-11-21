@@ -37,23 +37,7 @@ namespace cafe_management.Controllers
                 return builder.ToString();
             }
         }
-        // Trong AccessController.cs (bên trong class AccessController)
-
-        // Action Tạm thời để lấy giá trị băm
-        //[HttpGet]
-        //public IActionResult GetHashedPassword()
-        //{
-        //    // 1. Đặt mật khẩu gốc bạn muốn dùng (Ví dụ: Caphe2025)
-        //    string originalPassword = "12345";
-
-        //    // 2. Gọi hàm băm của bạn
-        //    string hashedPassword = HashPassword(originalPassword);
-
-        //    // 3. Trả về chuỗi băm để bạn có thể sao chép
-        //    return Content(hashedPassword);
-        //}
-
-        // ... các Action Login và Logout vẫn giữ nguyên ...
+       
         [HttpGet]
         public IActionResult Login()
         {
@@ -84,18 +68,15 @@ namespace cafe_management.Controllers
 
                 if (u != null)
                 {
-                    // Đăng nhập thành công
                     HttpContext.Session.SetString("UserName", u.UserName.ToString());
                     return RedirectToAction("Index", "admin");
                 }
                 else
                 {
-                    // Đăng nhập thất bại: Gán thông báo lỗi vào ViewData
                     ViewData["ErrorMessage"] = "Đăng nhập không thành công. Vui lòng kiểm tra lại Tên đăng nhập hoặc Mật khẩu.";
                 }
             }
 
-            // Trả về View (khi đó View sẽ kiểm tra ViewData["ErrorMessage"] để hiển thị)
             return View();
         }
 

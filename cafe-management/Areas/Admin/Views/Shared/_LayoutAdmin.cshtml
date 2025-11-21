@@ -4,22 +4,6 @@
     // Lấy tên Controller hiện tại từ URL
     var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
 
-    // Hàm helper để kiểm tra xem có nên thêm class 'active' hay không
-    // string IsActive(string controllerName)
-    // {
-    //     if (string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase))
-    //     {
-    //         return "active"; 
-    //     }
-    //     return "";
-    // }
-
-    // string IsActive(string controllerName)
-    // {
-    //     return string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase)
-    //         ? "active"
-    //         : "";
-    // }
     string IsActive(string controllerName)
     {
         if (string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase))
@@ -88,58 +72,7 @@
         </nav>
 
         <div class="container-fluid page-body-wrapper">
-            @* <nav class="sidebar sidebar-offcanvas" id="sidebar">
-                <ul class="nav nav-bar-fixed">
-                    <li class="nav-item">
-                        <a asp-controller="HomeAdmin" asp-action="Index" class="nav-link">
-                            <i class="fas fa-list-ul"></i>
-                            <span class="menu-title">Product</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Categories" asp-action="Index" class="nav-link">
-                            <i class="fas fa-table"></i>
-                            <span class="menu-title">Category</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Bill" asp-action="Index" class="nav-link">
-                            <i class="fas fa-file-invoice"></i>
-                            <span class="menu-title">Bill</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Customers" asp-action="Index" class="nav-link">
-                            <i class="fas fa-user"></i>
-                            <span class="menu-title">Customer</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="NewsManage" asp-action="Index" class="nav-link">
-                            <i class="fas fa-newspaper"></i>
-                            <span class="menu-title">News</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Feedback" asp-action="Index" class="nav-link">
-                            <i class="fas fa-comments"></i>
-                            <span class="menu-title">Feedback</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Accounts" asp-action="Index" class="nav-link">
-                            <i class="fas fa-lock"></i>
-                            <span class="menu-title">Account</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a asp-controller="Access" asp-action="Logout" class="nav-link">
-                            <i class="fas fa-sign-out-alt"></i>
-                            <span class="menu-title">Logout</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav> *@
+            
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav nav-bar-fixed">
                     <li class="nav-item @IsActive("HomeAdmin")">
