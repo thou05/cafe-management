@@ -63,6 +63,14 @@
                             </div>
                             <h6>Đăng nhập để tiếp tục</h6>
                             <h6 class="font-weight-light"></h6>
+
+                            @if (ViewData["ErrorMessage"] != null)
+                            {
+                                <div class="alert alert-danger" role="alert" style="font-size: 0.8em; padding: 0.3rem 0.75rem; margin-top: 10px;">
+                                    @ViewData["ErrorMessage"]
+                                </div>
+                            }
+
                             @using (Html.BeginForm("Login", "Access", FormMethod.Post))
                             {
                                 <div class="form-group">
