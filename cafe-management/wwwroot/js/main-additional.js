@@ -120,3 +120,24 @@
         }
     });
 })(jQuery);
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    var countdownDisplay = document.getElementById("countdownDisplay");
+    if (!countdownDisplay) return; // nếu không phải trang success thì bỏ qua
+
+    let countdown = 3; // số giây đếm ngược
+
+    function runCountdown() {
+        countdownDisplay.textContent = countdown;
+        if (countdown <= 0) {
+            window.location.href = "/home/index"; // trang muốn về
+        } else {
+            countdown--;
+            setTimeout(runCountdown, 1000);
+        }
+    }
+
+    runCountdown();
+});

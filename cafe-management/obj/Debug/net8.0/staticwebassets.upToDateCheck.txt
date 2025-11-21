@@ -117,7 +117,6 @@ wwwroot\img\shop-cart\cp-2.jpg
 wwwroot\img\shop-cart\cp-3.jpg
 wwwroot\img\shop-cart\cp-4.jpg
 wwwroot\js\hoverable-collapse.js
-wwwroot\js\main-additional.js
 wwwroot\js\main-admin-additional.js
 wwwroot\js\main-admin.js
 wwwroot\js\main.js
@@ -1954,3 +1953,4 @@ wwwroot\lib\slick-nav\dist\jquery.slicknav.min.js
 wwwroot\lib\slick-nav\dist\slicknav.css
 wwwroot\lib\slick-nav\dist\slicknav.min.css
 wwwroot\lib\slick-nav\MIT-LICENSE.txt
+wwwroot\js\main-additional.js
