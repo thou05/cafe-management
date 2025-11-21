@@ -1,3 +1,4 @@
+wwwroot\css\admin-custom.css
 wwwroot\css\magnific-popup.css
 wwwroot\css\site.css
 wwwroot\css\style-additional.css
@@ -1953,4 +1954,3 @@ wwwroot\lib\slick-nav\dist\jquery.slicknav.min.js
 wwwroot\lib\slick-nav\dist\slicknav.css
 wwwroot\lib\slick-nav\dist\slicknav.min.css
 wwwroot\lib\slick-nav\MIT-LICENSE.txt
-wwwroot\css\admin-custom.css

@@ -1,0 +1,119 @@
+﻿@* @using X.PagedList.Mvc.Core
+@using X.PagedList
+@model X.PagedList.IPagedList<cafe_management.Models.TbProduct>
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="@Url.Content("~/img/products/" + item.ImageUrl)" style="background-image: url('@Url.Content("~/img/products/" + item.ImageUrl)');">
+                        <ul class="product__hover">
+                            <li><a href="#"><i class="fas fa-expand-alt"></i></a></li>
+                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6><a href="#">@item.Name</a></h6>
+                        <div class="product__price">@(item.Price.ToString("n0")) &#8363;</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="col-lg-12 text-center">
+            <div class="product__pagination">
+                @Html.PagedListPager(Model, page => $"javascript:loadProducts({page}, '{ViewBag.currentFilter}', {ViewBag.currentCateID})",
+                new PagedListRenderOptions()
+                {
+                    MaximumPageNumbersToDisplay = 5,
+                    LiElementClasses = new List<String> { "pagination__option", "pagination__margin" },
+                    UlElementClasses = new List<String> { "pagination", "pagination__center" },
+                    ActiveLiElementClass = "pagination__active",
+                                                                 // Quan trọng: Tắt generate thẻ A href URL để dùng JS
+                    LinkToPreviousPageFormat = "<",
+                    LinkToNextPageFormat = ">",
+                })
+        </div>
+    </div>
+        }
+    else
+    {
+        <div class="col-12 text-center"><p>Không có sản phẩm nào.</p></div>
+    }
+</div> *@
+
+
+@using X.PagedList.Mvc.Core
+@using X.PagedList
+@model X.PagedList.IPagedList<cafe_management.Models.TbProduct>
+
+
+
+<div class="row">
+    @if (Model != null && Model.Any())
+    {
+        foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6">
+                <div class="product__item">
+                    @{
+                        string imagePath = string.IsNullOrEmpty(item.ImageUrl)
+                        ? Url.Content("~/img/no-image.jpg") // Ảnh mặc định nếu không có
+                        : Url.Content("~/img/products/" + item.ImageUrl);
+                    }
+
+                    <div class="product__item__pic set-bg"
+                         data-setbg="@imagePath"
+                         style="background-image: url('@imagePath');">
+
+                        <ul class="product__hover">
+                            <li>
+                                <a href="@Url.Content("~/img/products/" + item.ImageUrl)" class="image-popup">
+                                    <i class="fas fa-expand-alt"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Add", "Cart", new { id = item.Id, quantity = 1 })">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                        
+                    <div class="product__item__text">
+                        <h6>
+                            <a href="@Url.Action("Details", "Products", new { id = item.Id })">@item.Name</a>
+                        </h6>
+                        <div class="product__price">@(item.Price.ToString("n0")) &#8363;</div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="col-lg-12 text-center">
+            <div class="product__pagination">
+                @Html.PagedListPager(Model, page => $"javascript:loadProducts({page}, '{ViewBag.currentFilter}', {ViewBag.currentCateID ?? "null"})",
+                new PagedListRenderOptions()
+                {
+                    MaximumPageNumbersToDisplay = 5,
+                    LiElementClasses = new List<String> { "pagination__option", "pagination__margin" },
+                    UlElementClasses = new List<String> { "pagination", "pagination__center" },
+                    ActiveLiElementClass = "pagination__active",
+                    LinkToPreviousPageFormat = "<",
+                    LinkToNextPageFormat = ">",
+                })
+        </div>
+    </div>
+
+        // Đã xóa thẻ </div> thừa ở đây
+        }
+    else
+    {
+        <div class="col-12 text-center">
+            <p>Không tìm thấy sản phẩm nào.</p>
+        </div>
+    }
+</div>

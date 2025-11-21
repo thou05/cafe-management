@@ -3,58 +3,18 @@
 <div class="categories__accordion">
     <div class="accordion" id="accordionExample">
         <div class="card">
-            <div class="card-heading"><a asp-controller="Products" asp-action="Index">Tất cả</a></div>
+            <div class="card-heading">
+                <a href="javascript:void(0)" onclick="loadProducts(1, '', null)">Tất cả</a>
+            </div>
         </div>
 
         @foreach (var item in Model)
         {
-            var getUrl = "https://localhost:7147/api/productsapi/" + item.Id;
             <div class="card">
                 <div class="card-heading">
-                    <a asp-controller="products" asp-action="type" asp-route-target="@item.Id" asp-route-targetName="@item.Name">@item.Name</a>
-                    @*<a style="cursor: pointer" onclick="showProductsByCategory('@getUrl')">@item.Name</a>*@
+                    <a href="javascript:void(0)" onclick="loadProducts(1, '', @item.Id)">@item.Name</a>
                 </div>
             </div>
         }
     </div>
 </div>
-
-<script>
-    function showProductsByCategory(getUrl) {
-        var str = '';
-        $.ajax({
-            type: 'GET',
-            url: getUrl,
-            dataType: 'json',
-            success: function (data) {
-                $.each(data, function (key, val) {
-                    str += `
-                            <div class="col-lg-4 col-md-6">
-                                <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="../img/products/${val.ImageUrl}" style="background-image: url(&quot;../img/products/${val.ImageUrl}&quot;);">
-                                        <ul class="product__hover">
-                                            <li>
-                                                <a href="../img/products/${val.ImageUrl}" class="image-popup" >
-                                                    <span class="arrow_expand" ></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="product__item__text">
-                                        <h6>
-                                            <a href="/Products/Details/${val.Id}">${val.Name}</a>
-                                        </h6>
-                                        <div class="product__price">${val.Price} &#8363;</div>
-                                    </div>
-                                </div>
-                            </div>
-                        `
-                });
-                $('#displayProducts').html(str);
-            },
-            Error: function (xhr) {
-                alert(xhr.reponseText)
-            }
-        });
-    }
-</script>

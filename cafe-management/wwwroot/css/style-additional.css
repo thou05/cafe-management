@@ -82,3 +82,57 @@
 .pagination__margin {
     margin-right: 6px;
 }
+
+
+/* Style cho Form tìm kiếm trên Header */
+.header-search-form {
+    display: flex; /* Xếp input và nút nằm ngang */
+    align-items: center; /* Căn giữa theo chiều dọc */
+    background-color: #f5f5f5; /* Màu nền xám nhẹ */
+    border-radius: 30px; /* Bo tròn 2 đầu */
+    padding: 5px 15px; /* Khoảng cách bên trong */
+    border: 1px solid #e1e1e1; /* Viền mỏng (tùy chọn) */
+    margin-right: 15px; /* Cách giỏ hàng một chút */
+    transition: all 0.3s ease;
+}
+
+    /* Hiệu ứng khi bấm vào ô tìm kiếm */
+    .header-search-form:focus-within {
+        background-color: #fff;
+        border-color: #b0b0b0;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    /* Style cho ô Input */
+    .header-search-form input {
+        border: none;
+        background: transparent; /* Trong suốt để lấy màu nền của form */
+        outline: none;
+        font-size: 14px;
+        width: 180px; /* Chiều rộng ô nhập liệu */
+        color: #333;
+    }
+
+    /* Style cho nút Icon */
+    .header-search-form button {
+        border: none;
+        background: transparent;
+        color: #333;
+        cursor: pointer;
+        padding: 0;
+        margin-left: 5px;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+    }
+
+        .header-search-form button:hover {
+            color: #e53637; /* Đổi màu khi di chuột (màu đỏ chủ đạo) */
+        }
+
+/* Responsive: Thu nhỏ trên màn hình bé hơn nếu cần */
+@media (max-width: 1200px) {
+    .header-search-form input {
+        width: 120px;
+    }
+}
