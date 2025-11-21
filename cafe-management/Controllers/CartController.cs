@@ -81,40 +81,32 @@ namespace cafe_management.Controllers
         }
 
         [HttpPost]
+        [HttpPost]
         public IActionResult Update([FromBody] List<UpdateQuantityRequest> updates)
         {
             if (updates == null || !ModelState.IsValid)
-            {
                 return BadRequest("Invalid request.");
-            }
 
-            var cartItems = HttpContext.Session.Get<List<CartItem>>("Cart");
+            var cartItems = HttpContext.Session.GetObjectFromJson<List<CartItem>>("Cart") ?? new List<CartItem>();
 
-            if (cartItems != null)
+            foreach (var update in updates)
             {
-                foreach (var update in updates)
-                {
-                    var cartItemToUpdate = cartItems.Find(item => item.Id == update.ProductId);
-
-                    if (cartItemToUpdate != null)
-                    {
-                        cartItemToUpdate.Quantity = update.Quantity;
-                    }
-                }
-
-                HttpContext.Session.Set("Cart", cartItems);
-
-                decimal? totalAmount = 0;
-                foreach (var item in cartItems)
-                {
-                    totalAmount += item.Quantity * item.Price;
-                }
-
-                return Json(new { success = true, message = "Số lượng đã được cập nhật.", totalAmount = totalAmount, cartItems = cartItems });
+                var cartItem = cartItems.FirstOrDefault(x => x.Id == update.ProductId);
+                if (cartItem != null)
+                    cartItem.Quantity = update.Quantity;
             }
 
-            return BadRequest("Invalid cart.");
+            // Lưu lại session
+            HttpContext.Session.SetObjectAsJson("Cart", cartItems);
+
+            // Tính tổng tiền
+            decimal totalAmount = cartItems.Sum(x => x.Quantity * (x.Price ?? 0));
+
+            var cartItemsJson = cartItems.Select(x => new { id = x.Id, quantity = x.Quantity, price = x.Price ?? 0 });
+
+            return Json(new { success = true, cartItems = cartItemsJson, totalAmount });
         }
+
 
         public class UpdateQuantityRequest
         {

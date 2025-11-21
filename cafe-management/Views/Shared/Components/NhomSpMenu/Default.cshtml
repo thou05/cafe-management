@@ -12,14 +12,14 @@
             <div class="card">
                 <div class="card-heading">
                     <a asp-controller="products" asp-action="type" asp-route-target="@item.Id" asp-route-targetName="@item.Name">@item.Name</a>
-                    @*<a style="cursor: pointer" onclick="showProductsByCategory('@getUrl')">@item.TenSanPham</a>*@
+                    @*<a style="cursor: pointer" onclick="showProductsByCategory('@getUrl')">@item.Name</a>*@
                 </div>
             </div>
         }
     </div>
 </div>
 
-@*<script>
+<script>
     function showProductsByCategory(getUrl) {
         var str = '';
         $.ajax({
@@ -31,10 +31,10 @@
                     str += `
                             <div class="col-lg-4 col-md-6">
                                 <div class="product__item">
-                                    <div class="product__item__pic set-bg" data-setbg="../img/products/${val.HinhAnh}" style="background-image: url(&quot;../img/products/${val.HinhAnh}&quot;);">
+                                    <div class="product__item__pic set-bg" data-setbg="../img/products/${val.ImageUrl}" style="background-image: url(&quot;../img/products/${val.ImageUrl}&quot;);">
                                         <ul class="product__hover">
                                             <li>
-                                                <a href="../img/products/${val.HinhAnh}" class="image-popup" >
+                                                <a href="../img/products/${val.ImageUrl}" class="image-popup" >
                                                     <span class="arrow_expand" ></span>
                                                 </a>
                                             </li>
@@ -42,9 +42,9 @@
                                     </div>
                                     <div class="product__item__text">
                                         <h6>
-                                            <a href="/Products/Details/${val.MaSanPham}">${val.TenSanPham}</a>
+                                            <a href="/Products/Details/${val.Id}">${val.Name}</a>
                                         </h6>
-                                        <div class="product__price">${val.GiaBan} &#8363;</div>
+                                        <div class="product__price">${val.Price} &#8363;</div>
                                     </div>
                                 </div>
                             </div>
@@ -57,4 +57,4 @@
             }
         });
     }
-</script>*@
+</script>

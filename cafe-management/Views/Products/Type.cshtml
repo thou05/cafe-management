@@ -51,7 +51,7 @@
                                 <div class="product__item__pic set-bg" data-setbg=@Url.Content("../img/products/" + item.ImageUrl)>
                                     <ul class="product__hover">
                                         <li>
-                                            <a href=@Url.Content("../img/products/" + item.ImageUrl) class="image-popup">
+                                            <a href="@Url.Content("~/img/products/" + item.ImageUrl)" class="image-popup">
                                                 <i class="fas fa-expand-alt"></i>
                                             </a>
                                         </li>
@@ -80,7 +80,7 @@
                     }
 
                     <div class="col-lg-12 text-center">
-                        @Html.PagedListPager(Model,page=>Url.Action("ProductType", new {
+                        @Html.PagedListPager(Model,page=>Url.Action("Type", new {
                         page = page,
                                                 target = ViewBag.target,
                                                 targetName = ViewBag.targetName
