@@ -6,10 +6,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<INhomSpRepository, NhomSpRepository>();
 
 var connection = builder.Configuration.GetConnectionString("CafeConnection");
 builder.Services.AddDbContext<CafeDBContext>(options => options.UseSqlServer(connection));
+
+builder.Services.AddScoped<INhomSpRepository, NhomSpRepository>();
+builder.Services.AddScoped<ShoppingCartSummaryViewComponent>();
+builder.Services.AddSession();
 
 
 var app = builder.Build();
@@ -28,6 +31,7 @@ app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

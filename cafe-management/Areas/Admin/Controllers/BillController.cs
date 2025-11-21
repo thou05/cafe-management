@@ -19,7 +19,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("")]
         [Route("Index")]
-        //[Authentication]
+        [Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 30;
@@ -31,7 +31,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Search")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Search(int? page, string search)
         {
@@ -47,7 +47,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Details")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Details(int? page, string id, string name)
         {

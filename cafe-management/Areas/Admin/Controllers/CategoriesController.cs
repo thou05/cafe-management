@@ -1,4 +1,5 @@
 ﻿using cafe_management.Models;
+using cafe_management.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using X.PagedList;
@@ -23,6 +24,7 @@ namespace cafe_management.Areas.Admin.Controllers
         // 1. ĐÃ GỘP INDEX VÀ SEARCH VÀO LÀM MỘT
         [Route("")]
         [Route("index")]
+        [Authentication]
         public IActionResult Index(string search, int? page)
         {
             int pageSize = 30;
@@ -52,6 +54,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Create")]
         [HttpGet]
+        [Authentication]
         public IActionResult Create()
         {
             return View();
@@ -79,6 +82,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Edit")]
         [HttpGet]
+        [Authentication]
         public IActionResult Edit(int id) // Bỏ 'string name' không cần thiết
         {
             var category = _context.TbCategories.Find(id);
@@ -91,6 +95,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Edit")]
         [HttpPost]
+        [Authentication]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(TbCategory category)
         {
@@ -112,6 +117,7 @@ namespace cafe_management.Areas.Admin.Controllers
         // 4. SỬA LỖI LOGIC NGHIÊM TRỌNG TRONG HÀM DELETE
         [Route("Delete")]
         [HttpGet]
+        [Authentication]
         public IActionResult Delete(int id)
         {
             // Mặc định là lỗi

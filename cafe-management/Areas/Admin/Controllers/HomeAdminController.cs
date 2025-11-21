@@ -1,4 +1,5 @@
 ﻿using cafe_management.Models;
+using cafe_management.Models.Authentication;
 using cafe_management.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -8,7 +9,7 @@ using X.PagedList;
 namespace cafe_management.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [Route("homeadmin")]
+    [Route("admin")]
     public class HomeAdminController : Controller
     {
         private readonly CafeDBContext _context;
@@ -24,6 +25,8 @@ namespace cafe_management.Areas.Admin.Controllers
 
 
         [Route("")]
+        [Authentication]
+
         public IActionResult Index(string search, int? page)
         {
             int pageSize = 30;
@@ -67,6 +70,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Create")]
         [HttpGet]
+        [Authentication]
         public IActionResult Create()
         {
             ViewBag.CategoryId = new SelectList(_context.TbCategories.ToList(), "Id", "Name");
@@ -105,6 +109,7 @@ namespace cafe_management.Areas.Admin.Controllers
         //}
 
         [Route("Create")]
+        [Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
         // Tham số (TbProduct product, IFormFile imageFile) giờ đã khớp với View
@@ -157,7 +162,8 @@ namespace cafe_management.Areas.Admin.Controllers
 
 
         [Route("Details")]
-         [HttpGet]
+        [Authentication]
+        [HttpGet]
         public IActionResult Details(int id, string name)
         {
             var productItem = (from product in _context.TbProducts
@@ -180,6 +186,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Edit")]
+        [Authentication]
         [HttpGet]
         public IActionResult Edit(int id, string name)
         {
@@ -193,6 +200,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
 
         [Route("Edit")]
+        [Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(TbProduct product, IFormFile? imageFile)
@@ -248,6 +256,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Delete")]
         [HttpGet]
+        [Authentication]
         public IActionResult Delete(int id)
         {
             TempData["Message"] = "";

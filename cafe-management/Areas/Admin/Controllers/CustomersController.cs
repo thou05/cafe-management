@@ -19,7 +19,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("")]
         [Route("Index")]
-        //[Authentication]
+        [Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 30;
@@ -31,7 +31,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Search")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Search(int? page, string search)
         {
@@ -48,7 +48,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Create")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Create()
         {
@@ -56,7 +56,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Create")]
-        //[Authentication]
+        [Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(TbCustomer khachHang)
@@ -70,7 +70,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Edit")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Edit(int id, string name)
         {
@@ -81,7 +81,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Edit")]
-        //[Authentication]
+        [Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(TbCustomer khachHang)
@@ -95,7 +95,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Delete")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Delete(string id)
         {

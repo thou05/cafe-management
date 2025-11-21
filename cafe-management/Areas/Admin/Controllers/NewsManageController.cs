@@ -1,4 +1,5 @@
 ﻿using cafe_management.Models;
+using cafe_management.Models.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +20,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("")]
         [Route("index")]
+        [Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 30;
@@ -32,6 +34,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Search")]
         [HttpGet]
+        [Authentication]
         public IActionResult Search(int? page, string search)
         {
             int pageSize = 30;
@@ -48,6 +51,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Create")]
         [HttpGet]
+        [Authentication]
         public IActionResult Create()
         {
             ViewBag.NguoiDang = new SelectList(_context.TbAccounts.ToList(), "UserName", "UserName");
@@ -57,6 +61,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Create")]
         [HttpPost]
+        [Authentication]
         [ValidateAntiForgeryToken]
         public IActionResult Create(TbNews news)
         {
@@ -70,6 +75,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Details")]
         [HttpGet]
+        [Authentication]
         public IActionResult Details(int id, string name)
         {
             var news = _context.TbNews.SingleOrDefault(x => x.Id == id);
@@ -80,6 +86,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Edit")]
         [HttpGet]
+        [Authentication]
         public IActionResult Edit(int id, string name)
         {
             var news = _context.TbNews.Find(id);
@@ -93,6 +100,7 @@ namespace cafe_management.Areas.Admin.Controllers
         [Route("Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authentication]
         public IActionResult Edit(TbNews news)
         {
             _context.Entry(news).State = EntityState.Modified;
@@ -105,6 +113,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("Delete")]
         [HttpGet]
+        [Authentication]
         public IActionResult Delete(int id)
         {
             TempData["Message"] = "";

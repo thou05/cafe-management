@@ -42,7 +42,7 @@ namespace cafe_management.Areas.Admin.Controllers
 
         [Route("")]
         [Route("Index")]
-        //[Authentication]
+        [Authentication]
         public IActionResult Index(int? page)
         {
             int pageSize = 30;
@@ -54,28 +54,45 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Create")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
 
+        //[Route("Create")]
+        ////[Authentication]
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult Create(TbAccount quanTriVien)
+        //{
+        //    _context.TbAccounts.Add(quanTriVien);
+        //    _context.SaveChanges();
+        //    TempData["Message"] = "Thêm thành công";
+
+        //    return RedirectToAction("Index", "Accounts");
+        //}
+
         [Route("Create")]
-        //[Authentication]
         [HttpPost]
+        [Authentication]
         [ValidateAntiForgeryToken]
         public IActionResult Create(TbAccount quanTriVien)
         {
+            // Hash mật khẩu trước khi lưu vào DB
+            string hashPass = AccountsController.HashPassword(quanTriVien.Password);
+            quanTriVien.Password = hashPass;
+
             _context.TbAccounts.Add(quanTriVien);
             _context.SaveChanges();
-            TempData["Message"] = "Thêm thành công";
 
+            TempData["Message"] = "Thêm thành công";
             return RedirectToAction("Index", "Accounts");
         }
 
         [Route("Edit")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Edit(int id, string name)
         {
@@ -86,7 +103,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Edit")]
-        //[Authentication]
+        [Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(TbAccount quanTriVien)
@@ -104,7 +121,7 @@ namespace cafe_management.Areas.Admin.Controllers
         }
 
         [Route("Delete")]
-        //[Authentication]
+        [Authentication]
         [HttpGet]
         public IActionResult Delete(string id)
         {

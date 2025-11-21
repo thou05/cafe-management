@@ -7,7 +7,7 @@ namespace cafe_management.Models.Authentication
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {
-            if (context.HttpContext.Session.GetString("TenNguoiDungAdmin") == null)
+            if (context.HttpContext.Session.GetString("UserName") == null)
             {
                 context.Result = new RedirectToRouteResult(new RouteValueDictionary
                 {
