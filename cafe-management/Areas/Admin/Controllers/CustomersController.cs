@@ -38,6 +38,11 @@ namespace cafe_management.Areas.Admin.Controllers
             int pageSize = 30;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
 
+            if (string.IsNullOrEmpty(search))
+            {
+                return RedirectToAction("Index");
+            }
+
             search = search.ToLower();
             ViewBag.search = search;
 
@@ -61,24 +66,54 @@ namespace cafe_management.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(TbCustomer khachHang)
         {
-            _context.TbCustomers.Add(khachHang);
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                // Nếu Id chưa có thì tạo mới (dù constructor đã làm rồi, thêm cho chắc)
+                if (khachHang.Id == Guid.Empty)
+                {
+                    khachHang.Id = Guid.NewGuid();
+                }
 
-            TempData["Message"] = "Thêm thành công";
+                _context.TbCustomers.Add(khachHang);
+                _context.SaveChanges();
 
-            return RedirectToAction("Index", "Customers");
+                TempData["Message"] = "Thêm thành công";
+                return RedirectToAction("Index", "Customers");
+            }
+            return View(khachHang);
+
+            //_context.TbCustomers.Add(khachHang);
+            //_context.SaveChanges();
+
+            //TempData["Message"] = "Thêm thành công";
+
+            //return RedirectToAction("Index", "Customers");
         }
 
+        //[Route("Edit")]
+        //[Authentication]
+        //[HttpGet]
+        //public IActionResult Edit(int id, string name)
+        //{
+        //    var khachHang = _context.TbCustomers.Find(id);
+        //    ViewBag.name = name;
+
+        //    return View(khachHang);
+        //}
         [Route("Edit")]
         [Authentication]
         [HttpGet]
-        public IActionResult Edit(int id, string name)
+        // SỬA: int id -> Guid? id
+        public IActionResult Edit(Guid? id)
         {
+            if (id == null) return NotFound();
+
             var khachHang = _context.TbCustomers.Find(id);
-            ViewBag.name = name;
+            if (khachHang == null) return NotFound();
 
             return View(khachHang);
         }
+
 
         [Route("Edit")]
         [Authentication]
@@ -86,35 +121,78 @@ namespace cafe_management.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(TbCustomer khachHang)
         {
-            _context.Entry(khachHang).State = EntityState.Modified;
-            _context.SaveChanges();
+            if (ModelState.IsValid)
+            {
+                _context.Entry(khachHang).State = EntityState.Modified;
+                _context.SaveChanges();
 
-            TempData["Message"] = "Sửa thành công";
+                TempData["Message"] = "Sửa thành công";
+                return RedirectToAction("Index", "Customers");
+            }
+            return View(khachHang);
+            //_context.Entry(khachHang).State = EntityState.Modified;
+            //_context.SaveChanges();
 
-            return RedirectToAction("Index", "Customers");
+            //TempData["Message"] = "Sửa thành công";
+
+            //return RedirectToAction("Index", "Customers");
         }
 
         [Route("Delete")]
         [Authentication]
         [HttpGet]
-        public IActionResult Delete(string id)
+        // SỬA: string id -> Guid? id
+        public IActionResult Delete(Guid? id)
         {
-            TempData["Message"] = "";
+            if (id == null) return NotFound();
 
-            var hoaDon = _context.TbBills.Where(x => x.Id == Guid.Parse(id)).ToList();
+            // 1. Kiểm tra xem khách hàng này có hóa đơn nào không?
+            // Lưu ý: Giả sử trong TbBill bạn có trường CustomerId là khóa ngoại trỏ về khách hàng
+            // Nếu tên trường khóa ngoại trong TbBill khác (vd: MaKhachHang), bạn hãy sửa chữ CustomerId bên dưới.
+            var hasBills = _context.TbBills.Any(x => x.CustomerId == id);
 
-            if (hoaDon.Count() > 0)
+            if (hasBills)
             {
-                TempData["Message"] = "Xoá không thành công";
+                TempData["Message"] = "Không thể xóa: Khách hàng này đang có hóa đơn.";
                 return RedirectToAction("Index", "Customers");
             }
 
-            _context.Remove(_context.TbCustomers.Find(id));
+            // 2. Tìm và xóa
+            var khachHang = _context.TbCustomers.Find(id);
+            if (khachHang == null)
+            {
+                TempData["Message"] = "Không tìm thấy khách hàng";
+                return RedirectToAction("Index");
+            }
+
+            _context.TbCustomers.Remove(khachHang);
             _context.SaveChanges();
 
             TempData["Message"] = "Xoá thành công";
-
             return RedirectToAction("Index", "Customers");
         }
+
+        //[Route("Delete")]
+        //[Authentication]
+        //[HttpGet]
+        //public IActionResult Delete(string id)
+        //{
+        //    TempData["Message"] = "";
+
+        //    var hoaDon = _context.TbBills.Where(x => x.Id == Guid.Parse(id)).ToList();
+
+        //    if (hoaDon.Count() > 0)
+        //    {
+        //        TempData["Message"] = "Xoá không thành công";
+        //        return RedirectToAction("Index", "Customers");
+        //    }
+
+        //    _context.Remove(_context.TbCustomers.Find(id));
+        //    _context.SaveChanges();
+
+        //    TempData["Message"] = "Xoá thành công";
+
+        //    return RedirectToAction("Index", "Customers");
+        //}
     }
 }

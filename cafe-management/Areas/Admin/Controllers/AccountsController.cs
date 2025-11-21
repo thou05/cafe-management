@@ -78,61 +78,144 @@ namespace cafe_management.Areas.Admin.Controllers
         [HttpPost]
         [Authentication]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(TbAccount quanTriVien)
+        public IActionResult Create(TbAccount account)
         {
-            // Hash mật khẩu trước khi lưu vào DB
-            string hashPass = AccountsController.HashPassword(quanTriVien.Password);
-            quanTriVien.Password = hashPass;
+            if (ModelState.IsValid)
+            {
+                // Hash mật khẩu trước khi lưu vào DB
+                // Kiểm tra nếu password null để tránh lỗi
+                if (!string.IsNullOrEmpty(account.Password))
+                {
+                    account.Password = HashPassword(account.Password);
+                }
 
-            _context.TbAccounts.Add(quanTriVien);
-            _context.SaveChanges();
+                _context.TbAccounts.Add(account);
+                _context.SaveChanges();
 
-            TempData["Message"] = "Thêm thành công";
-            return RedirectToAction("Index", "Accounts");
+                TempData["Message"] = "Thêm thành công";
+                return RedirectToAction("Index", "Accounts");
+            }
+
+            // Nếu form lỗi thì trả về View để nhập lại
+            return View(account);
+            //// Hash mật khẩu trước khi lưu vào DB
+            //string hashPass = AccountsController.HashPassword(quanTriVien.Password);
+            //quanTriVien.Password = hashPass;
+
+            //_context.TbAccounts.Add(quanTriVien);
+            //_context.SaveChanges();
+
+            //TempData["Message"] = "Thêm thành công";
+            //return RedirectToAction("Index", "Accounts");
         }
+
+        //[Route("Edit")]
+        //[Authentication]
+        //[HttpGet]
+        //public IActionResult Edit(int id, string name)
+        //{
+        //    var quanTriVien = _context.TbAccounts.Find(id);
+        //    ViewBag.id = id;
+
+        //    return View(quanTriVien);
+        //}
 
         [Route("Edit")]
         [Authentication]
         [HttpGet]
-        public IActionResult Edit(int id, string name)
+        // QUAN TRỌNG: Đổi int id thành Guid id
+        public IActionResult Edit(Guid? id)
         {
-            var quanTriVien = _context.TbAccounts.Find(id);
-            ViewBag.id = id;
+            if (id == null) return NotFound();
 
-            return View(quanTriVien);
+            var account = _context.TbAccounts.Find(id);
+            if (account == null) return NotFound();
+            return View(account);
+
+            //var quanTriVien = _context.TbAccounts.Find(id);
+            //if (quanTriVien == null) return NotFound();
+
+            //ViewBag.id = id;
+            //return View(quanTriVien);
         }
 
         [Route("Edit")]
         [Authentication]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(TbAccount quanTriVien)
+        public IActionResult Edit(TbAccount account)
         {
-            string hashPass = HashPassword(quanTriVien.Password);
+            var existingAccount = _context.TbAccounts.Find(account.Id);
 
-            quanTriVien.Password = hashPass;
+            if (existingAccount != null)
+            {
+                // Cập nhật UserName
+                existingAccount.UserName = account.UserName;
 
-            _context.Entry(quanTriVien).State = EntityState.Modified;
-            _context.SaveChanges();
+                // Logic Password:
+                // Nếu người dùng nhập pass mới thì hash và lưu.
+                // Nếu người dùng để trống hoặc nhập lại pass cũ (đã hash) thì bỏ qua.
+                if (!string.IsNullOrEmpty(account.Password) && account.Password != existingAccount.Password)
+                {
+                    // Chỉ hash nếu password thay đổi
+                    existingAccount.Password = HashPassword(account.Password);
+                }
 
-            TempData["Message"] = "Sửa thành công";
+                _context.SaveChanges();
+                TempData["Message"] = "Cập nhật thành công";
+                return RedirectToAction("Index");
+            }
 
-            return RedirectToAction("Index", "Accounts");
+            return View(account);
+
+            //string hashPass = HashPassword(quanTriVien.Password);
+
+            //quanTriVien.Password = hashPass;
+
+            //_context.Entry(quanTriVien).State = EntityState.Modified;
+            //_context.SaveChanges();
+
+            //TempData["Message"] = "Sửa thành công";
+
+            //return RedirectToAction("Index", "Accounts");
         }
+
 
         [Route("Delete")]
         [Authentication]
         [HttpGet]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(Guid? id) // Dùng Guid? id
         {
-            TempData["Message"] = "";
+            if (id == null) return NotFound();
 
-            _context.Remove(_context.TbAccounts.Find(id));
+            var account = _context.TbAccounts.Find(id);
+
+            if (account == null)
+            {
+                TempData["Message"] = "Không tìm thấy tài khoản";
+                return RedirectToAction("Index");
+            }
+
+            _context.TbAccounts.Remove(account);
             _context.SaveChanges();
 
             TempData["Message"] = "Xoá thành công";
-
-            return RedirectToAction("Index", "Accounts");
+            return RedirectToAction("Index");
         }
+
+        //[Route("Delete")]
+        //[Authentication]
+        //[HttpGet]
+        //public IActionResult Delete(string id)
+        //{
+        //    TempData["Message"] = "";
+
+        //    _context.Remove(_context.TbAccounts.Find(id));
+        //    _context.SaveChanges();
+
+        //    TempData["Message"] = "Xoá thành công";
+
+        //    return RedirectToAction("Index", "Accounts");
+        //}
     }
 }
