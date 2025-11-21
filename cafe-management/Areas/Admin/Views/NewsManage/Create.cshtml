@@ -5,7 +5,7 @@
 }
 
 <h1>Create</h1>
- *@
+
 
 @model cafe_management.Models.TbNews
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -60,4 +60,103 @@
 <div>
     <a asp-action="Index">Quay về</a>
 </div>
+ *@
 
+@model cafe_management.Models.TbNews
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Thêm tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    #imgPreview {
+        display: none;
+        max-width: 100%;
+        max-height: 300px; /* Giới hạn chiều cao cho đỡ tốn diện tích */
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        padding: 5px;
+        background-color: #f8f9fa;
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="page-title mb-0">Thêm tin tức mới</h3>
+            </div>
+
+            <form asp-action="Create" enctype="multipart/form-data" method="post">
+                <div class="card-body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Tiêu đề bài viết</label>
+                        <input asp-for="Title" class="form-control" placeholder="Nhập tiêu đề tin tức..." />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PostedDate" class="form-label">Ngày đăng</label>
+                        <input asp-for="PostedDate" type="date" class="form-control" />
+                        <span asp-validation-for="PostedDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh đại diện</label>
+                        <input name="imageFile" type="file" class="form-control" id="imageInput" onchange="previewImage()" />
+
+                        <img id="imgPreview" alt="Ảnh xem trước" />
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Content" class="form-label">Nội dung bài viết</label>
+                        <textarea asp-for="Content" class="form-control" rows="10" placeholder="Nhập nội dung chi tiết..."></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="card-footer d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> Đăng tin
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Quay về
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function previewImage() {
+            var fileInput = document.getElementById("imageInput");
+            var imgPreview = document.getElementById("imgPreview");
+
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    imgPreview.src = e.target.result;
+                    imgPreview.style.display = "block";
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                imgPreview.style.display = "none";
+            }
+        }
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

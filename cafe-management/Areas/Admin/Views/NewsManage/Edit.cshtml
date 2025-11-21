@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "Edit";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
-} *@
+}
 
 
 @model cafe_management.Models.TbNews
@@ -60,4 +60,110 @@
     <a asp-action="Index">Quay về</a>
 </div>
 
+ *@
 
+
+@model cafe_management.Models.TbNews
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Sửa tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<style>
+    #imgPreview {
+        display: block; /* Luôn hiện (vì đang sửa nên chắc chắn có ảnh cũ hoặc placeholder) */
+        max-width: 100%;
+        max-height: 300px;
+        margin-top: 10px;
+        border-radius: 8px;
+        border: 1px solid #dee2e6;
+        padding: 5px;
+        background-color: #f8f9fa;
+    }
+</style>
+
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h3 class="page-title mb-0">
+                    Sửa tin tức: <span class="text-primary">@Model.Title</span>
+                </h3>
+            </div>
+
+            <form asp-action="Edit" enctype="multipart/form-data" method="post">
+                <div class="card-body">
+
+                    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                    <input type="hidden" asp-for="Id" />
+                    <input type="hidden" asp-for="Image" />
+
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label">Tiêu đề bài viết</label>
+                        <input asp-for="Title" class="form-control" />
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="PostedDate" class="form-label">Ngày đăng</label>
+                        <input asp-for="PostedDate" type="date" class="form-control" />
+                        <span asp-validation-for="PostedDate" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Hình ảnh đại diện</label>
+
+                        <div class="mb-2">
+                            <img id="imgPreview" src="@Url.Content("~/img/news/" + Model.Image)" alt="Ảnh bài viết" />
+                        </div>
+
+                        <input name="imageFile" type="file" class="form-control" id="imageInput" onchange="previewImage()" />
+                        <small class="text-muted">Chọn ảnh mới nếu bạn muốn thay đổi ảnh hiện tại.</small>
+                        <span asp-validation-for="Image" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Content" class="form-label">Nội dung bài viết</label>
+                        <textarea asp-for="Content" class="form-control" rows="10"></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
+                    </div>
+
+                </div>
+
+                <div class="card-footer d-flex gap-2">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-save"></i> Lưu thay đổi
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="fa fa-arrow-left"></i> Quay về
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        function previewImage() {
+            var fileInput = document.getElementById("imageInput");
+            var imgPreview = document.getElementById("imgPreview");
+
+            if (fileInput.files && fileInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    imgPreview.src = e.target.result;
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            }
+        }
+    </script>
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

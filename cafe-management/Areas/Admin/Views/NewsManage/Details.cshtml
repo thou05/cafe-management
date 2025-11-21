@@ -5,7 +5,7 @@
 }
 
 <h1>Details</h1>
- *@
+
 
 @model cafe_management.Models.TbNews
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -63,4 +63,70 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Sửa</a> |
     <a asp-action="Index">Quay về</a>
+</div> *@
+
+@model cafe_management.Models.TbNews
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Chi tiết tin tức";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                <h3 class="page-title mb-0">
+                    Chi tiết tin tức
+                </h3>
+            </div>
+
+            <div class="card-body">
+
+                <div class="mb-4 text-center">
+                    <h2 class="fw-bold text-primary">@Html.DisplayFor(model => model.Title)</h2>
+
+                    <div class="text-muted small mt-2">
+                        <span class="me-3"><i class="fa fa-calendar-alt me-1"></i> @Model.PostedDate?.ToString("dd/MM/yyyy")</span>
+                        <span><i class="fa fa-hashtag me-1"></i> ID: @Model.Id</span>
+                    </div>
+                </div>
+
+                <hr class="my-4" />
+
+                @if (!string.IsNullOrEmpty(Model.Image))
+                {
+                    <div class="mb-4 text-center">
+                        <img src="@Url.Content("~/img/news/" + Model.Image)"
+                             class="img-fluid rounded shadow-sm"
+                             style="max-height: 400px; width: auto; object-fit: cover;"
+                             alt="@Model.Title" />
+                    </div>
+                }
+
+                <div class="mb-3">
+                    <label class="text-muted small text-uppercase fw-bold mb-2">Nội dung chi tiết</label>
+                    <div class="p-4 bg-light border rounded text-break">
+                        <div style="white-space: pre-line; line-height: 1.8;">
+                            @Html.DisplayFor(model => model.Content)
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="card-footer d-flex gap-2 justify-content-end">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-success">
+                    <i class="fa fa-pencil-alt"></i> Sửa bài viết
+                </a>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fa fa-arrow-left"></i> Quay về
+                </a>
+            </div>
+
+        </div>
+    </div>
 </div>

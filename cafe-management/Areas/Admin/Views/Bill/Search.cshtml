@@ -1,4 +1,4 @@
-﻿@using cafe_management.Models
+﻿@* @using cafe_management.Models
 @using X.PagedList.Mvc.Core
 @model X.PagedList.IPagedList<TbBill>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -78,4 +78,126 @@
         LiElementClasses = new List<String> {"page-item"},
         PageClasses = new List<String> {"page-link"}
     })
+</div> *@
+
+
+@using cafe_management.Models
+@using X.PagedList.Mvc.Core
+@model X.PagedList.IPagedList<TbBill>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Kết quả tìm kiếm";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+
+            <div class="card-header card-header-flex">
+                <div class="page-header mb-0">
+                    <h3 class="page-title mb-0">
+                        Kết quả tìm kiếm ngày: <span class="text-primary">@ViewBag.search</span>
+                    </h3>
+                </div>
+
+                <div class="search-field">
+                    @using (Html.BeginForm("Search", "Bill", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            <input type="date" class="form-control" name="search" value="@ViewBag.search" />
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="card-body">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> Thêm mới
+                    </a>
+                </p>
+
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Message"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>Mã hoá đơn</th>
+                                <th>Ngày bán</th>
+                                <th>SĐT Khách hàng</th>
+                                <th class="text-end">Tổng tiền</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            #@Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            <i class="fa fa-calendar-alt text-muted me-1"></i>
+                                            @(item.OrderDate.ToString("dd/MM/yyyy"))
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.CustomerId)
+                                        </td>
+                                        <td class="text-end fw-bold text-success">
+                                            @(item.TotalAmount.ToString("n0") ?? "0") &#8363;
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-info btn-sm text-white" asp-action="Details" asp-route-id="@item.Id" asp-route-name="@item.Id" title="Xem chi tiết">
+                                                <i class="fa fa-eye"></i> Xem
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="5" class="text-center py-4">
+                                        <span class="text-muted">Không tìm thấy hóa đơn nào cho ngày này.</span>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @if (Model != null && Model.PageCount > 1)
+            {
+                <div class="card-footer">
+                    @Html.PagedListPager(Model, page => Url.Action("Search", new { page = page, search = ViewBag.search }), new PagedListRenderOptions()
+                    {
+                        MaximumPageNumbersToDisplay = 5,
+                                LiElementClasses = new List<String> { "page-item" },
+                                PageClasses = new List<String> { "page-link" },
+                                })
+            </div>
+                        }
+        </div>
+        <div class="mt-3">
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="fa fa-arrow-left"></i> Quay về danh sách
+            </a>
+        </div>
+
+    </div>
 </div>

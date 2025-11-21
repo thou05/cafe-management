@@ -1,4 +1,4 @@
-﻿@using cafe_management.Models
+﻿@* @using cafe_management.Models
 @using X.PagedList.Mvc.Core;
 @model X.PagedList.IPagedList<TbFeedback>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -72,4 +72,259 @@
         LiElementClasses = new List<String> {"page-item"},
         PageClasses = new List<String> {"page-link"}
     })
+</div> *@
+
+@* 
+@using cafe_management.Models
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TbFeedback>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Tiếp nhận phản hồi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+
+        <div class="card shadow-sm">
+
+            <div class="card-header card-header-flex">
+                <div class="page-header mb-0">
+                    @if (!String.IsNullOrEmpty(ViewBag.SearchTerm))
+                    {
+                        <h3 class="page-title mb-0">Kết quả cho: <span class="text-primary">@ViewBag.SearchTerm</span></h3>
+                    }
+                    else
+                    {
+                        <h3 class="page-title mb-0">Tiếp nhận phản hồi</h3>
+                    }
+                </div>
+
+                <div class="search-field">
+                    @using (Html.BeginForm("Index", "Feedback", FormMethod.Get))
+                    {
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search" placeholder="Tìm tiêu đề, sđt..." autocomplete="off" value="@ViewBag.SearchTerm">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    }
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                @if (TempData["Message"] != null)
+                {
+                    var messageType = TempData["MessageType"] ?? "success";
+                    <div class="alert alert-@messageType alert-dismissible fade show" role="alert">
+                        @TempData["Message"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped align-middle">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Tiêu đề</th>
+                                <th>Số điện thoại</th>
+                                <th class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            #@Html.DisplayFor(modelItem => item.Id)
+                                        </td>
+                                        <td>
+                                            <span class="fw-bold">@Html.DisplayFor(modelItem => item.Title)</span>
+                                        </td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(item.PhoneNumber))
+                                            {
+                                                <a href="tel:@item.PhoneNumber" class="text-decoration-none">
+                                                    <i class="fa fa-phone-alt small me-1"></i>@item.PhoneNumber
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted">---</span>
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-info btn-sm text-white" asp-action="Details" asp-route-id="@item.Id" asp-route-name="@item.Title" title="Xem chi tiết">
+                                                <i class="fa fa-eye"></i>
+                                            </a>
+                                            <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id" title="Xóa phản hồi"
+                                               onclick="return confirm('Bạn có chắc chắn muốn xóa phản hồi này không?');">
+                                                <i class="fa fa-trash"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">
+                                        Chưa có dữ liệu phản hồi nào.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @if (Model != null && Model.PageCount > 1)
+            {
+                <div class="card-footer">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, search = ViewBag.SearchTerm }), new PagedListRenderOptions()
+                    {
+                        MaximumPageNumbersToDisplay = 5,
+                                LiElementClasses = new List<String> { "page-item" },
+                                PageClasses = new List<String> { "page-link" },
+                                })
+            </div>
+                        }
+        </div>
+    </div>
+</div> *@
+
+
+@using cafe_management.Models
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TbFeedback>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Quản lý phản hồi";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-12">
+        <div class="card shadow-sm">
+
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <div class="page-title-box">
+                    <h3 class="page-title mb-0" style="font-size: 1.25rem; font-weight: 500;">
+                        Tiếp nhận phản hồi
+                    </h3>
+                </div>
+
+                <div class="search-box" style="width: 300px;">
+                    <form asp-action="Index" method="get">
+                        <div class="input-group">
+                            <input type="text" class="form-control" name="search"
+                                   placeholder="Tìm tiêu đề..."
+                                   value="@ViewBag.search" autocomplete="off">
+                            <button class="btn btn-primary" type="submit">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                @if (TempData["Message"] != null)
+                {
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        @TempData["Message"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped align-middle">
+                        <thead class="table-light">
+                            <tr>
+                                <th style="width: 10%;">Mã</th>
+                                <th style="width: 40%;">Tiêu đề</th>
+                                <th style="width: 20%;">Số điện thoại</th>
+                                <th style="width: 30%;" class="text-center">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (Model != null && Model.Any())
+                            {
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>#@item.Id</td>
+                                        <td>
+                                            <span class="fw-bold">@item.Title</span>
+                                        </td>
+                                        <td>
+                                            @if (!string.IsNullOrEmpty(item.PhoneNumber))
+                                            {
+                                                <a href="tel:@item.PhoneNumber" class="text-decoration-none text-dark">
+                                                    @item.PhoneNumber
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <span class="text-muted text-sm">---</span>
+                                            }
+                                        </td>
+                                        <td class="text-center">
+                                            <a class="btn btn-outline-info btn-sm" asp-action="Details" asp-route-id="@item.Id" title="Xem chi tiết">
+                                                <i class="fa fa-eye"></i> Xem
+                                            </a>
+                                            <a class="btn btn-outline-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id"
+                                               onclick="return confirm('Bạn có chắc chắn muốn xóa phản hồi này không?');" title="Xóa">
+                                                <i class="fa fa-trash"></i> Xóa
+                                            </a>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                            else
+                            {
+                                <tr>
+                                    <td colspan="4" class="text-center py-4 text-muted">
+                                        <i class="fa fa-inbox fa-2x mb-2"></i><br />
+                                        Không tìm thấy dữ liệu phản hồi nào.
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @if (Model != null && Model.PageCount > 1)
+            {
+                <div class="card-footer">
+                    <div class="d-flex justify-content-end">
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page, search = ViewBag.search }),
+                        new PagedListRenderOptions()
+                        {
+                            MaximumPageNumbersToDisplay = 5,
+                            LiElementClasses = new List<String> { "page-item" },
+                            PageClasses = new List<String> { "page-link" },
+                        })
+                </div>
+            </div>
+                        }
+        </div>
+    </div>
 </div>
+
+<style>
+    /* CSS nhỏ để chỉnh paging đẹp hơn */
+    .pagination {
+        margin-bottom: 0;
+    }
+</style>

@@ -50,8 +50,6 @@ namespace cafe_management.Areas.Admin.Controllers
             return View(pagedListItem);
         }
 
-        // Action Search cũ đã được gộp vào Index
-
         [Route("Create")]
         [HttpGet]
         [Authentication]

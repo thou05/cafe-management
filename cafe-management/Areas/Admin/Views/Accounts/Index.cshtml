@@ -1,4 +1,4 @@
-﻿@using cafe_management.Models
+﻿@* @using cafe_management.Models
 @using X.PagedList.Mvc.Core;
 @model X.PagedList.IPagedList<TbAccount>
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
@@ -60,4 +60,90 @@
         LiElementClasses = new List<String> {"page-item"},
         PageClasses = new List<String> {"page-link"}
     })
+</div> *@
+
+
+@using cafe_management.Models
+@using X.PagedList.Mvc.Core;
+@model X.PagedList.IPagedList<TbAccount>
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Quản lý tài khoản";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-12">
+        <div class="card shadow-sm">
+
+            <div class="card-header">
+                <h3 class="page-title mb-0">Quản lý tài khoản truy cập</h3>
+            </div>
+
+            <div class="card-body">
+                <p>
+                    <a asp-action="Create" class="btn btn-primary">
+                        <i class="fa fa-plus"></i> Thêm mới
+                    </a>
+                </p>
+
+                @if (TempData["Message"] != null)
+                {
+                    var messageType = TempData["MessageType"] ?? "success";
+                    <div class="alert alert-@messageType alert-dismissible fade show" role="alert">
+                        @TempData["Message"]
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                }
+
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Tên người dùng</th>
+                                <th>Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Id)
+                                    </td>
+                                    <td>
+                                        <strong>@Html.DisplayFor(modelItem => item.UserName)</strong>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-success btn-sm" asp-action="Edit" asp-route-id="@item.Id" asp-route-name="@item.UserName" title="Thay đổi thông tin / Mật khẩu">
+                                            <i class="fa fa-pencil"></i> Sửa
+                                        </a>
+
+                                        <a class="btn btn-danger btn-sm" asp-action="Delete" asp-route-id="@item.Id" title="Xóa tài khoản"
+                                           onclick="return confirm('Bạn có chắc chắn muốn xóa tài khoản @item.UserName không?');">
+                                            <i class="fa fa-trash"></i> Xóa
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            @if (Model.PageCount > 1)
+            {
+                <div class="card-footer">
+                    @Html.PagedListPager(Model, page => Url.Action("Index", new { page = page }), new PagedListRenderOptions()
+                    {
+                        MaximumPageNumbersToDisplay = 5,
+                                LiElementClasses = new List<String> { "page-item" },
+                                PageClasses = new List<String> { "page-link" },
+                                })
+            </div>
+                        }
+        </div>
+    </div>
 </div>
