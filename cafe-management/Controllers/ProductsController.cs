@@ -28,7 +28,7 @@ namespace cafe_management.Controllers
         {
             int pageSize = 9;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
-            var listItem = _context.TbProducts.AsNoTracking().Where(x => x.Id == target).OrderBy(x => x.Name).ToList();
+            var listItem = _context.TbProducts.AsNoTracking().Where(x => x.CategoryId == target).OrderBy(x => x.Name).ToList();
             PagedList<TbProduct> pagedListItem = new PagedList<TbProduct>(listItem, pageNumber, pageSize);
 
             ViewBag.target = target;

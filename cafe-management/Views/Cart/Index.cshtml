@@ -42,7 +42,7 @@
                             @if (ViewData["Message"] != null)
                             {
                                 <tr>
-                                    <td>
+                                    <td colspan="5">
                                         <p id="cartMessage">@ViewData["Message"]</p>
                                     </td>
                                 </tr>
@@ -52,23 +52,21 @@
                             {
                                 <tr class="product-item" data-product-id="@item.Id">
                                     <td class="cart__product__item">
-                                        <img src=@Url.Content("../img/products/" + item.Img) alt="" style="width:70px;">
+                                        <img src="@Url.Content("../img/products/" + item.Img)" alt="" style="width:70px;">
                                         <div class="cart__product__item__title">
                                             <h6>@item.Name</h6>
                                         </div>
                                     </td>
-                                    <td class="cart__price">@item.Price.Value.ToString("n0") &#8363</td>
+                                    <td class="cart__price">@((item.Price ?? 0).ToString("n0")) ₫</td>
                                     <td class="cart__quantity">
                                         <div class="pro-qty">
-                                            <input type="number" class="quantity-input" data-product-id="@item.Id" value="@item.Quantity">
+                                            <input type="number" class="quantity-input" data-product-id="@item.Id" value="@item.Quantity" min="0">
                                         </div>
                                     </td>
-                                    <td class="cart__total">@item.TotalAmount.Value.ToString("n0") &#8363</td>
+                                    <td class="cart__total">@((item.TotalAmount ?? 0).ToString("n0")) ₫</td>
                                     <td class="cart__close">
-                                        <a @* asp-action="RemoveToCart" asp-route-id="@item.MaSp" *@ class="removeItem" data-product-id="@item.Id">
-                                            <span>
-                                                <i class="fas fa-times"></i>
-                                            </span>
+                                        <a href="#" class="removeItem" data-product-id="@item.Id">
+                                            <span><i class="fas fa-times"></i></span>
                                         </a>
                                     </td>
                                 </tr>
@@ -78,7 +76,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row mt-3">
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="cart__btn">
                     <a asp-controller="products" asp-action="index">
@@ -90,20 +89,19 @@
             <div class="col-lg-6 col-md-6 col-sm-6">
                 <div class="cart__btn update__btn">
                     <a href="#" id="updateCart">
-                        <span>
-                            <i class="fas fa-redo-alt"></i>
-                        </span>
+                        <span><i class="fas fa-redo-alt"></i></span>
                         Cập nhật giỏ hàng
                     </a>
                 </div>
             </div>
         </div>
-        <div class="row">
+
+        <div class="row mt-3">
             <div class="col-lg-4 offset-lg-8">
                 <div class="cart__total__procced">
                     <h6>Tổng tiền</h6>
                     <ul>
-                        <li>Tổng <span id="totalAmount">@ViewData["total"] &#8363</span></li>
+                        <li>Tổng <span id="totalAmount">@ViewData["total"]</span> ₫</li>
                     </ul>
                     <a asp-action="checkout" id="checkoutLink" class="primary-btn">Thanh toán</a>
                 </div>
@@ -111,4 +109,52 @@
         </div>
     </div>
 </section>
-<!-- Shop Cart Section End -->
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script>
+    $(document).ready(function () {
+
+        function updateCartAjax() {
+            let updates = [];
+
+            $(".quantity-input").each(function () {
+                updates.push({
+                    productId: $(this).data("product-id"),
+                    quantity: parseInt($(this).val()) || 0
+                });
+            });
+
+            $.ajax({
+                url: "/Cart/Update",
+                type: "POST",
+                contentType: "application/json",
+                data: JSON.stringify(updates),
+                success: function (res) {
+                    if (res.success) {
+                        // Update tổng tiền từng dòng
+                        res.cartItems.forEach(item => {
+                            $(`tr[data-product-id=${item.id}] .cart__total`)
+                                .text((item.quantity * (item.price ?? 0)).toLocaleString() + " ₫");
+                        });
+
+                        // Update tổng tiền giỏ hàng
+                        $("#totalAmount").text((res.totalAmount ?? 0).toLocaleString());
+                    } else {
+                        alert(res.message);
+                    }
+                }
+            });
+        }
+
+        // Bắt sự kiện nút "Cập nhật giỏ hàng"
+        $("#updateCart").on("click", function(e) {
+            e.preventDefault();
+            updateCartAjax();
+        });
+
+        // Live update khi thay đổi số lượng
+        $(".quantity-input").on("input", function () {
+            updateCartAjax();
+        });
+
+    });
+</script>

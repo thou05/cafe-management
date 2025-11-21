@@ -13,7 +13,7 @@
         public string? ImageUrl { get; set; }
 
         public string? Notes { get; set; }
-
+        public int CategoryId { get; set; }
         public string Category { get; set; }
     }
 }
