@@ -1,5 +1,37 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
+@{
+    // Lấy tên Controller hiện tại từ URL
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+
+    // Hàm helper để kiểm tra xem có nên thêm class 'active' hay không
+    // string IsActive(string controllerName)
+    // {
+    //     if (string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase))
+    //     {
+    //         return "active"; 
+    //     }
+    //     return "";
+    // }
+
+    // string IsActive(string controllerName)
+    // {
+    //     return string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase)
+    //         ? "active"
+    //         : "";
+    // }
+    string IsActive(string controllerName)
+    {
+        if (string.Equals(currentController, controllerName, StringComparison.OrdinalIgnoreCase))
+        {
+            // Thêm class 'server-active' để đánh dấu đây là cái do C# chọn
+            return "active server-active";
+        }
+        return "";
+    }
+}
+
+
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -56,7 +88,7 @@
         </nav>
 
         <div class="container-fluid page-body-wrapper">
-            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+            @* <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav nav-bar-fixed">
                     <li class="nav-item">
                         <a asp-controller="HomeAdmin" asp-action="Index" class="nav-link">
@@ -107,6 +139,64 @@
                         </a>
                     </li>
                 </ul>
+            </nav> *@
+            <nav class="sidebar sidebar-offcanvas" id="sidebar">
+                <ul class="nav nav-bar-fixed">
+                    <li class="nav-item @IsActive("HomeAdmin")">
+                        <a asp-controller="HomeAdmin" asp-action="Index" class="nav-link">
+                            <i class="fas fa-list-ul"></i> <span class="menu-title">Product</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @IsActive("Categories")">
+                        <a asp-controller="Categories" asp-action="Index" class="nav-link">
+                            <i class="fas fa-table"></i>
+                            <span class="menu-title">Category</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @IsActive("Bill")">
+                        <a asp-controller="Bill" asp-action="Index" class="nav-link">
+                            <i class="fas fa-file-invoice"></i>
+                            <span class="menu-title">Bill</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @IsActive("Customers")">
+                        <a asp-controller="Customers" asp-action="Index" class="nav-link">
+                            <i class="fas fa-user"></i>
+                            <span class="menu-title">Customer</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @IsActive("NewsManage")">
+                        <a asp-controller="NewsManage" asp-action="Index" class="nav-link">
+                            <i class="fas fa-newspaper"></i>
+                            <span class="menu-title">News</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @IsActive("Feedback")">
+                        <a asp-controller="Feedback" asp-action="Index" class="nav-link">
+                            <i class="fas fa-comments"></i>
+                            <span class="menu-title">Feedback</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item @IsActive("Accounts")">
+                        <a asp-controller="Accounts" asp-action="Index" class="nav-link">
+                            <i class="fas fa-lock"></i>
+                            <span class="menu-title">Account</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a asp-controller="Access" asp-action="Logout" class="nav-link">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="menu-title">Logout</span>
+                        </a>
+                    </li>
+                </ul>
             </nav>
 
             <div class="main-panel">
@@ -145,6 +235,39 @@
     <script src="~/js/misc.js"></script>
     <script src="~/js/main-admin.js" asp-append-version="true"></script>
     <script src="~/js/main-admin-additional.js" asp-append-version="true"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Đợi 100ms để đảm bảo JS của template chạy xong việc thêm class lung tung
+            setTimeout(function() {
+
+                // 1. Tìm cái thẻ li nào có class 'server-active' (Cái đúng)
+                var trueActive = $(".nav-item.server-active");
+
+                // 2. Nếu tìm thấy cái đúng
+                if (trueActive.length > 0) {
+                    // Xóa class 'active' ở TẤT CẢ các thẻ li KHÁC
+                    $(".nav-item").not(trueActive).removeClass("active");
+
+                    // Đảm bảo cái đúng vẫn còn class active (đề phòng bị JS template xóa nhầm)
+                    trueActive.addClass("active");
+                }
+                else {
+                    // Trường hợp C# không tìm thấy controller nào khớp (ví dụ trang lạ),
+                    // thì cho phép JS template tự quyết định hoặc xóa hết tùy bạn.
+                    // Ở đây ta xóa hết cho sạch.
+                     $(".nav-item").removeClass("active");
+                }
+            }, 100);
+        });
+    </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+
+
+
+
+
