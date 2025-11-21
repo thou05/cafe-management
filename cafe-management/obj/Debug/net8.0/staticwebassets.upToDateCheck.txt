@@ -58,6 +58,14 @@ wwwroot\img\instagram\insta-3.jpg
 wwwroot\img\instagram\insta-4.jpg
 wwwroot\img\instagram\insta-5.jpg
 wwwroot\img\instagram\insta-6.jpg
+wwwroot\img\news\bi_quyet_pha_robusta.jpg
+wwwroot\img\news\bo_suu_tap_banh_moi.png
+wwwroot\img\news\ca_phe_phin_viet.jpg
+wwwroot\img\news\coldbrew_ra_mat.jpg
+wwwroot\img\news\hanh_trinh_arabica.jpg
+wwwroot\img\news\khong_gian_moi_tch.jpg
+wwwroot\img\news\sua_tuoi_ca_phe_moi.png
+wwwroot\img\news\tra_sua_oolong_moi.jpg
 wwwroot\img\news\tt00001.jpg
 wwwroot\img\news\tt00002.jpg
 wwwroot\img\news\tt00003.jpg
