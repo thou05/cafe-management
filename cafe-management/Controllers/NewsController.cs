@@ -15,7 +15,7 @@ namespace cafe_management.Controllers
         }
 
         public IActionResult Index(int? page)
-        {
+        {   
             int pageSize = 9;
             int pageNumber = page == null || page < 0 ? 1 : page.Value;
             var listItem = _context.TbNews.AsNoTracking().OrderByDescending(x => x.PostedDate).ToList();

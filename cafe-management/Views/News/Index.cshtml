@@ -33,7 +33,7 @@
             {
                 <div class="col-lg-4">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg=@Url.Content("../img/news/" + item.Image)></div>
+                        <div class="blog__item__pic set-bg" data-setbg=@Url.Content("~/img/news/" + item.Image)></div>
                         <div class="blog__item__text">
                             <ul>
                                 <li>@item.PostedDate.Value.ToString("dd/MM/yyyy")</li>
@@ -42,7 +42,7 @@
                                 <a
                                     asp-controller="news"
                                     asp-action="details"
-                                    asp-route-maTinTuc="@item.Id">
+                                    asp-route-id="@item.Id">
                                     @item.Title</a>
                                 </h6>
                         </div>

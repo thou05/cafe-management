@@ -15,7 +15,7 @@ namespace cafe_management.Models
 
         [DataType(DataType.Date)] 
         [Display(Name = "Posted Date")] 
-        public DateOnly? PostedDate { get; set; } 
+        public DateTime? PostedDate { get; set; } 
 
         [DataType(DataType.MultilineText)]
         public string? Content { get; set; } 
